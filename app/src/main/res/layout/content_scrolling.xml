@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="2dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.ted.myapplication.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
@@ -11,47 +14,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:dividerHeight="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="@string/large_text" />
+        <include layout="@layout/cardview_1_detail_xml" />
 
-        <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/chart1"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:paddingTop="2dp" />
+        <include layout="@layout/cardview_2_detail_xml" />
 
-        <TextView
-            android:id="@+id/description2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="Descriptio2" />
-
-        <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/chart2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:paddingTop="2dp" />
-
-        <TextView
-            android:id="@+id/description3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="Descriptio3" />
-
-        <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/chart3"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:paddingTop="2dp" />
-
+        <include layout="@layout/cardview_3_detail_xml" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

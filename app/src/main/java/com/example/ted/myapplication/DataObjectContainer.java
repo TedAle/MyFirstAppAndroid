@@ -15,7 +15,7 @@ public class DataObjectContainer {
             DataObject obj;
             if (i % 2 == 0) {
                 obj = new DataObject("Name " + i, "Description " + i);
-                obj.setBigImage(R.color.colorPrimary);
+                obj.setBigImage(R.mipmap.default_big_image);
             } else {
                 obj = new DataObject("Name D " + i, "Description D " + i);
                 obj.setBigImage(R.color.colorPrimaryDark);

@@ -29,8 +29,9 @@ public class ScrollingActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         int logo = DataObjectContainer.getDatas().get(posDataObject).getBigImage();
         //COLORE DELLA TOOLBARD DA COLLASSATA
-//        collapsingToolbarLayout.setContentScrim(getResources().getDrawable(logo));
-        ((ImageView)findViewById(R.id.img_toolbar)).setImageDrawable(getResources().getDrawable());
+        //collapsingToolbarLayout.setContentScrim(getResources().getDrawable(logo));
+        /*IMPOSTO LA BIG IMAGE*/
+        ((ImageView) findViewById(R.id.img_toolbar)).setImageDrawable(getResources().getDrawable(logo));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
