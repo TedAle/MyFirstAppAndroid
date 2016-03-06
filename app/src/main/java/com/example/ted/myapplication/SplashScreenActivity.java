@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.ted.myapplication.model.MockDB;
+import com.example.ted.myapplication.model.WoTChartsDbHelper;
+
 import java.util.Calendar;
 
 /**
@@ -27,6 +30,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         DataObjectContainer.initDatas();
+        WoTChartsDbHelper mDbHelper = new WoTChartsDbHelper(getApplicationContext());
+        MockDB.initializeDBMock(mDbHelper);
 
         new Handler().postDelayed(new Runnable() {
             @Override
