@@ -53,6 +53,7 @@ public class MockDB {
         String sortOrder =
                 WoTChartsEntry.NAME + " DESC";
 
+        //TODO creare la query per l'estrazione dei dati dal db
         Cursor c = db.query(
                 WoTChartsEntry.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
