@@ -10,21 +10,26 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class WoTChartsDbHelper extends SQLiteOpenHelper {
 
     private static final String TEXT_TYPE = " TEXT";
+    private static final String BOOL_TYPE = " BOOLEAN";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + WoTChartsEntry.TABLE_NAME + " (" +
                     WoTChartsEntry._ID + " INTEGER PRIMARY KEY," +
                     WoTChartsEntry.NAME + TEXT_TYPE + COMMA_SEP +
+                    WoTChartsEntry.NATION + TEXT_TYPE + COMMA_SEP +
+                    WoTChartsEntry.CLASS + TEXT_TYPE + COMMA_SEP +
+                    WoTChartsEntry.TIER + TEXT_TYPE + COMMA_SEP +
+                    WoTChartsEntry.PREMIUM + BOOL_TYPE + COMMA_SEP +
                     WoTChartsEntry.SHIELD + TEXT_TYPE + COMMA_SEP +
-                    WoTChartsEntry.FIRE_POWER + TEXT_TYPE + COMMA_SEP +
-                    " )";
+                    WoTChartsEntry.FIRE_POWER + TEXT_TYPE +
+                    " );";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + WoTChartsEntry.TABLE_NAME;
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "FeedReader.db";
+    public static final String DATABASE_NAME = "WoTCharts.db";
 
     public WoTChartsDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

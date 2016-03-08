@@ -32,12 +32,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         DataObjectContainer.initDatas();
         WoTChartsDbHelper mDbHelper = new WoTChartsDbHelper(getApplicationContext());
         MockDB.initializeDBMock(mDbHelper);
+//        MockDB.readData(mDbHelper);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 // TODO Auto-generated method stub
-                Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                Intent i = new Intent(SplashScreenActivity.this, HomeActivity.class);
                 startActivity(i);
                 this.finish();
             }
