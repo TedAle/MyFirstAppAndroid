@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
@@ -28,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
 
     Boolean flUS = Boolean.FALSE, flURSS = Boolean.FALSE, flUK = Boolean.FALSE, flFR = Boolean.FALSE, flCHINA = Boolean.FALSE, flJP = Boolean.FALSE, flDK = Boolean.FALSE, flCHZ = Boolean.FALSE, flC1 = Boolean.FALSE, flC2 = Boolean.FALSE, flC3 = Boolean.FALSE, flC4 = Boolean.FALSE,
             flT1 = Boolean.FALSE, flT2 = Boolean.FALSE, flT3 = Boolean.FALSE, flT4 = Boolean.FALSE, flT5 = Boolean.FALSE, flT6 = Boolean.FALSE, flT7 = Boolean.FALSE, flT8 = Boolean.FALSE, flT9 = Boolean.FALSE, flT10 = Boolean.FALSE;
+
+
 
     ToggleButton us;
     ToggleButton urss;
@@ -80,8 +83,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 WoTChartsDbHelper mDbHelper = new WoTChartsDbHelper(getApplicationContext());
-                checkSearchFilter(mDbHelper);
-
+                ArrayList<Tank> result = checkSearchFilter(mDbHelper);
+                for (Tank tank : result){
+                    Log.i("Home Activity", tank.toString());
+                }
                 Snackbar.make(view, "Search", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 

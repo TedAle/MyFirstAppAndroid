@@ -120,33 +120,39 @@ public class MockDB {
                 limit                                     // The max limit of rows returned by the query
         );
 
-        Cursor c2 = db.rawQuery("SELECT * FROM " + WoTChartsEntry.TABLE_NAME + " WHERE NATION = 'US'", null);
+        StringBuilder builder_values_where = new StringBuilder();
+        for (String val : val_where){
+            builder_values_where.append(val + ", ");
+        }
+        String values_where = builder_values_where.substring(0, builder_values_where.toString().length()-", ".length()).toString();
+
+        Cursor c2 = db.rawQuery("SELECT * FROM " + WoTChartsEntry.TABLE_NAME + " WHERE NATION IN ("+values_where+")", null);
 
 
         // if Cursor is contains results
-        if (c != null) {
+        if (c2 != null) {
             // move cursor to first row
-            if (c.moveToFirst()) {
+            if (c2.moveToFirst()) {
                 do {
                     Tank tank = new Tank();
-                    Log.d("MOCK_DB", "_ID: " + c.getString(c.getColumnIndex(WoTChartsEntry._ID)));
-                    tank.setId(String.valueOf(c.getInt(c.getColumnIndex(WoTChartsEntry._ID))));
-                    Log.d("MOCK_DB", "NAME: " + c.getString(c.getColumnIndex(WoTChartsEntry.NAME)));
-                    tank.setName(c.getString(c.getColumnIndex(WoTChartsEntry.NAME)));
-                    Log.d("MOCK_DB", "NATION: " + c.getString(c.getColumnIndex(WoTChartsEntry.NATION)));
-                    Log.d("MOCK_DB", "CLASS: " + c.getString(c.getColumnIndex(WoTChartsEntry.CLASS)));
-                    Log.d("MOCK_DB", "TIER: " + c.getString(c.getColumnIndex(WoTChartsEntry.TIER)));
-                    tank.setNation(c.getString(c.getColumnIndex(WoTChartsEntry.NATION)));
-                    tank.setClasse(c.getString(c.getColumnIndex(WoTChartsEntry.CLASS)));
-                    tank.setTier(c.getString(c.getColumnIndex(WoTChartsEntry.TIER)));
+                    Log.d("MOCK_DB", "_ID: " + c2.getString(c2.getColumnIndex(WoTChartsEntry._ID)));
+                    tank.setId(String.valueOf(c2.getInt(c2.getColumnIndex(WoTChartsEntry._ID))));
+                    Log.d("MOCK_DB", "NAME: " + c2.getString(c2.getColumnIndex(WoTChartsEntry.NAME)));
+                    tank.setName(c2.getString(c2.getColumnIndex(WoTChartsEntry.NAME)));
+                    Log.d("MOCK_DB", "NATION: " + c2.getString(c2.getColumnIndex(WoTChartsEntry.NATION)));
+                    Log.d("MOCK_DB", "CLASS: " + c2.getString(c2.getColumnIndex(WoTChartsEntry.CLASS)));
+                    Log.d("MOCK_DB", "TIER: " + c2.getString(c2.getColumnIndex(WoTChartsEntry.TIER)));
+                    tank.setNation(c2.getString(c2.getColumnIndex(WoTChartsEntry.NATION)));
+                    tank.setClasse(c2.getString(c2.getColumnIndex(WoTChartsEntry.CLASS)));
+                    tank.setTier(c2.getString(c2.getColumnIndex(WoTChartsEntry.TIER)));
 
-                    Log.d("MOCK_DB", "SHIELD: " + c.getString(c.getColumnIndex(WoTChartsEntry.SHIELD)));
-                    tank.setShield(c.getString(c.getColumnIndex(WoTChartsEntry.SHIELD)));
-                    Log.d("MOCK_DB", "FIRE_POWER: " + c.getString(c.getColumnIndex(WoTChartsEntry.FIRE_POWER)));
-                    tank.setFirePower(c.getString(c.getColumnIndex(WoTChartsEntry.FIRE_POWER)));
+                    Log.d("MOCK_DB", "SHIELD: " + c2.getString(c2.getColumnIndex(WoTChartsEntry.SHIELD)));
+                    tank.setShield(c2.getString(c2.getColumnIndex(WoTChartsEntry.SHIELD)));
+                    Log.d("MOCK_DB", "FIRE_POWER: " + c2.getString(c2.getColumnIndex(WoTChartsEntry.FIRE_POWER)));
+                    tank.setFirePower(c2.getString(c2.getColumnIndex(WoTChartsEntry.FIRE_POWER)));
 
                     result.add(tank);
-                } while (c.moveToNext());
+                } while (c2.moveToNext());
             }
         }
 

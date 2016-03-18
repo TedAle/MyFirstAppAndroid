@@ -68,4 +68,17 @@ public class Tank {
     public void setFirePower(String firePower) {
         this.firePower = firePower;
     }
+
+    @Override
+    public String toString() {
+        return "Tank{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", nation='" + nation + '\'' +
+                ", classe='" + classe + '\'' +
+                ", tier='" + tier + '\'' +
+                ", shield='" + shield + '\'' +
+                ", firePower='" + firePower + '\'' +
+                '}';
+    }
 }
