@@ -13,6 +13,7 @@ import android.widget.ToggleButton;
 import com.example.ted.myapplication.model.MockDB;
 import com.example.ted.myapplication.model.Tank;
 import com.example.ted.myapplication.model.WoTChartsDbHelper;
+import com.example.ted.myapplication.model.utils.FiltersManager;
 
 import java.util.ArrayList;
 
@@ -26,10 +27,10 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<Tank> tankCHZ;
     ArrayList<Tank> tankJP;
     ArrayList<Tank> tankDK;
+    ArrayList<Tank> tankAll;
 
     Boolean flUS = Boolean.FALSE, flURSS = Boolean.FALSE, flUK = Boolean.FALSE, flFR = Boolean.FALSE, flCHINA = Boolean.FALSE, flJP = Boolean.FALSE, flDK = Boolean.FALSE, flCHZ = Boolean.FALSE, flC1 = Boolean.FALSE, flC2 = Boolean.FALSE, flC3 = Boolean.FALSE, flC4 = Boolean.FALSE,
             flT1 = Boolean.FALSE, flT2 = Boolean.FALSE, flT3 = Boolean.FALSE, flT4 = Boolean.FALSE, flT5 = Boolean.FALSE, flT6 = Boolean.FALSE, flT7 = Boolean.FALSE, flT8 = Boolean.FALSE, flT9 = Boolean.FALSE, flT10 = Boolean.FALSE;
-
 
 
     ToggleButton us;
@@ -63,17 +64,27 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mDbHelper = new WoTChartsDbHelper(getApplicationContext());
-        tankUS = MockDB.getTankByNation(mDbHelper, "US");
-        tankURSS = MockDB.getTankByNation(mDbHelper, "URSS");
-        tankUK = MockDB.getTankByNation(mDbHelper, "UK");
-        tankFR = MockDB.getTankByNation(mDbHelper, "FR");
-        tankCHINA = MockDB.getTankByNation(mDbHelper, "CHINA");
-        tankCHZ = MockDB.getTankByNation(mDbHelper, "CHZ");
-        tankJP = MockDB.getTankByNation(mDbHelper, "JP");
-        tankDK = MockDB.getTankByNation(mDbHelper, "DK");
+        tankAll = MockDB.getTankAll(mDbHelper);
+        tankUS = new ArrayList<>();
+        tankURSS = new ArrayList<>();
+        tankUK = new ArrayList<>();
+        tankFR = new ArrayList<>();
+        tankCHINA = new ArrayList<>();
+        tankCHZ = new ArrayList<>();
+        tankJP = new ArrayList<>();
+        tankDK = new ArrayList<>();
+        extractTanks();
+//        tankUS = extractTankByNation(tankAll, "US");
+//        tankURSS = extractTankByNation(tankAll, "URSS");
+//        tankUK = extractTankByNation(tankAll, "UK");
+//        tankFR = extractTankByNation(tankAll, "FR");
+//        tankCHINA = extractTankByNation(tankAll, "CHINA");
+//        tankCHZ = extractTankByNation(tankAll, "CHZ");
+//        tankJP = extractTankByNation(tankAll, "JP");
+//        tankDK = extractTankByNation(tankAll, "DK");
+
 
         initView();
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,22 +93,148 @@ public class HomeActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WoTChartsDbHelper mDbHelper = new WoTChartsDbHelper(getApplicationContext());
-                ArrayList<Tank> result = checkSearchFilter(mDbHelper);
-                for (Tank tank : result){
+                ArrayList<String> nations = createWhereNation();
+                ArrayList<String> classes = createWhereClasse();
+                ArrayList<String> tiers = createWhereTier();
+                ArrayList<Tank> result;
+                result = shortcutSearch(nations, classes, tiers);
+                if (result == null) {
+                    if (nations.size() == 0 && classes.size() == 0 && tiers.size() == 0) {
+                        result = tankAll;
+                    } else {
+                        WoTChartsDbHelper mDbHelper = new WoTChartsDbHelper(getApplicationContext());
+                        result = checkSearchFilter(mDbHelper, nations, classes, tiers);
+                    }
+                }
+                for (Tank tank : result) {
                     Log.i("Home Activity", tank.toString());
                 }
-                Snackbar.make(view, "Search", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Finded " + result.size() + " tanks", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-
-
             }
         });
     }
 
-    private ArrayList<Tank> checkSearchFilter(WoTChartsDbHelper mDbHelper) {
-        ArrayList<Tank> result = new ArrayList<Tank>();
+    //    TODO selectClassList AND selectTierList
+    private ArrayList<Tank> shortcutSearch(ArrayList<String> nations, ArrayList<String> classes, ArrayList<String> tiers) {
+        if (nations.size() != 0 && classes.size() == 0 && tiers.size() == 0) {
+            return selectNationList(nations);
+        } else if (nations.size() == 0 && classes.size() != 0 && tiers.size() == 0) {
+//            TODO
+            return null;
+        } else if (nations.size() == 0 && classes.size() == 0 && tiers.size() != 0) {
+//            TODO
+            return null;
+        }
+        return null;
+    }
 
+    private ArrayList<Tank> selectNationList(ArrayList<String> nations) {
+        ArrayList<Tank> result = new ArrayList<>();
+        for (String nat : nations) {
+            if (FiltersManager.US.equalsIgnoreCase(nat)) {
+                result.addAll(tankUS);
+            } else if (FiltersManager.UK.equalsIgnoreCase(nat)) {
+                result.addAll(tankUK);
+            } else if (FiltersManager.URSS.equalsIgnoreCase(nat)) {
+                result.addAll(tankURSS);
+            } else if (FiltersManager.FR.equalsIgnoreCase(nat)) {
+                result.addAll(tankFR);
+            } else if (FiltersManager.JP.equalsIgnoreCase(nat)) {
+                result.addAll(tankJP);
+            } else if (FiltersManager.CHINA.equalsIgnoreCase(nat)) {
+                result.addAll(tankCHINA);
+            } else if (FiltersManager.CHZ.equalsIgnoreCase(nat)) {
+                result.addAll(tankCHZ);
+            } else if (FiltersManager.DK.equalsIgnoreCase(nat)) {
+                result.addAll(tankDK);
+            }
+        }
+
+        return result;
+    }
+
+//TODO selectClassList
+//    private ArrayList<Tank> selectClassList(ArrayList<String> nations) {
+//        ArrayList<Tank> result = new ArrayList<Tank>();
+//        for (String nat : nations) {
+//            if (FiltersManager.C1.equalsIgnoreCase(nat)) {
+//                result.addAll(tankC1);
+//            } else if (FiltersManager.C2.equalsIgnoreCase(nat)) {
+//                result.addAll(tankC2);
+//            } else if (FiltersManager.C3.equalsIgnoreCase(nat)) {
+//                result.addAll(tankC3);
+//            } else if (FiltersManager.C4.equalsIgnoreCase(nat)) {
+//                result.addAll(tankC4);
+//            }
+//        }
+//        return result;
+//    }
+
+//TODO selectTierList
+//    private ArrayList<Tank> selectTierList(ArrayList<String> nations) {
+//        ArrayList<Tank> result = new ArrayList<Tank>();
+//        for (String nat : nations) {
+//            if (FiltersManager.T1.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT1);
+//            } else if (FiltersManager.T2.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT2);
+//            } else if (FiltersManager.T3.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT3);
+//            } else if (FiltersManager.T4.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT4);
+//            } else if (FiltersManager.T5.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT5);
+//            } else if (FiltersManager.T6.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT6);
+//            } else if (FiltersManager.T7.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT7);
+//            } else if (FiltersManager.T8.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT8);
+//            } else if (FiltersManager.T9.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT9);
+//            } else if (FiltersManager.T10.equalsIgnoreCase(nat)) {
+//                result.addAll(tankT10);
+//            }
+//        }
+//        return result;
+//    }
+
+
+    private ArrayList<Tank> extractTankByNation(ArrayList<Tank> tankAll, String nation) {
+        ArrayList<Tank> result = new ArrayList<>();
+        for (Tank tank : tankAll) {
+            if (nation.equalsIgnoreCase(tank.getNation())) {
+                result.add(tank);
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<Tank> extractTankByClass(ArrayList<Tank> tankAll, String classe) {
+        ArrayList<Tank> result = new ArrayList<>();
+        for (Tank tank : tankAll) {
+            if (classe.equalsIgnoreCase(tank.getClasse())) {
+                result.add(tank);
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<Tank> extractTankByTier(ArrayList<Tank> tankAll, String tier) {
+        ArrayList<Tank> result = new ArrayList<>();
+        for (Tank tank : tankAll) {
+            if (tier.equalsIgnoreCase(tank.getTier())) {
+                result.add(tank);
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<Tank> checkSearchFilter(WoTChartsDbHelper mDbHelper, ArrayList<String> nations, ArrayList<String> classes, ArrayList<String> tiers) {
+        ArrayList<Tank> result;
+        //TODO SEARCH TANK
+        result = MockDB.getTank(mDbHelper, nations, classes, tiers);
         return result;
     }
 
@@ -106,48 +243,56 @@ public class HomeActivity extends AppCompatActivity {
         us = (ToggleButton) findViewById(R.id.us);
         us.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeImage(buttonView, flUS, R.drawable.ic_usa_flag_disabled, R.drawable.ic_usa_flag_pressed);
                 flUS = !flUS;
             }
         });
         urss = (ToggleButton) findViewById(R.id.urss);
         urss.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeImage(buttonView, flURSS, R.drawable.ic_ussr_flag_disabled, R.drawable.ic_ussr_flag_pressed);
                 flURSS = !flURSS;
             }
         });
         uk = (ToggleButton) findViewById(R.id.uk);
         uk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeImage(buttonView, flUK, R.drawable.ic_uk_flag_disabled, R.drawable.ic_uk_flag_pressed);
                 flUK = !flUK;
             }
         });
         fr = (ToggleButton) findViewById(R.id.fr);
         fr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeImage(buttonView, flFR, R.drawable.ic_french_flag_disabled, R.drawable.ic_french_flag_pressed);
                 flFR = !flFR;
             }
         });
         china = (ToggleButton) findViewById(R.id.china);
         china.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeImage(buttonView, flCHINA, R.drawable.ic_china_flag_disabled, R.drawable.ic_china_flag_pressed);
                 flCHINA = !flCHINA;
             }
         });
         jp = (ToggleButton) findViewById(R.id.jp);
         jp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeImage(buttonView, flJP, R.drawable.ic_japan_flag_disabled, R.drawable.ic_japan_flag_pressed);
                 flJP = !flJP;
             }
         });
         dk = (ToggleButton) findViewById(R.id.dk);
         dk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeImage(buttonView, flDK, R.drawable.ic_germany_flag_disabled, R.drawable.ic_germany_flag_pressed);
                 flDK = !flDK;
             }
         });
         chz = (ToggleButton) findViewById(R.id.chz);
         chz.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeImage(buttonView, flCHZ, R.drawable.ic_czechoslovakia_flag_disabled, R.drawable.ic_czechoslovakia_flag_pressed);
                 flCHZ = !flCHZ;
             }
         });
@@ -250,6 +395,129 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void changeImage(CompoundButton v, Boolean flag, int _idTrue, int _idFalse) {
+        if (flag) {
+            v.setBackgroundResource(_idTrue);
+//            v.set
+        } else {
+            v.setBackgroundResource(_idFalse);
+//            v.setColorFilter(Color.argb(255, 255, 255, 255)); // White Tint
+        }
+    }
+
+    private ArrayList<String> createWhereNation() {
+        ArrayList<String> list = new ArrayList<>();
+
+        if (flUS) {
+            list.add(FiltersManager.US);
+        }
+        if (flUK) {
+            list.add(FiltersManager.US);
+        }
+        if (flURSS) {
+            list.add(FiltersManager.US);
+        }
+        if (flFR) {
+            list.add(FiltersManager.US);
+        }
+        if (flCHINA) {
+            list.add(FiltersManager.US);
+        }
+        if (flJP) {
+            list.add(FiltersManager.US);
+        }
+        if (flDK) {
+            list.add(FiltersManager.US);
+        }
+        if (flCHZ) {
+            list.add(FiltersManager.US);
+        }
+        return list;
+    }
+
+    private ArrayList<String> createWhereClasse() {
+        ArrayList<String> list = new ArrayList<>();
+
+        if (flC1) {
+            list.add(FiltersManager.C1);
+        }
+        if (flC2) {
+            list.add(FiltersManager.C2);
+        }
+        if (flC3) {
+            list.add(FiltersManager.C3);
+        }
+        if (flC4) {
+            list.add(FiltersManager.C4);
+        }
+
+
+        return list;
+    }
+
+    private ArrayList<String> createWhereTier() {
+        ArrayList<String> list = new ArrayList<>();
+
+        if (flT1) {
+            list.add(FiltersManager.T1);
+        }
+        if (flT2) {
+            list.add(FiltersManager.T2);
+        }
+        if (flT3) {
+            list.add(FiltersManager.T3);
+        }
+        if (flT4) {
+            list.add(FiltersManager.T4);
+        }
+        if (flT5) {
+            list.add(FiltersManager.T5);
+        }
+        if (flT6) {
+            list.add(FiltersManager.T6);
+        }
+        if (flT7) {
+            list.add(FiltersManager.T7);
+        }
+        if (flT8) {
+            list.add(FiltersManager.T8);
+        }
+        if (flT9) {
+            list.add(FiltersManager.T9);
+        }
+        if (flT10) {
+            list.add(FiltersManager.T10);
+        }
+
+        return list;
+    }
+
+    /**
+     * Extract all the tanks and insert them to the proper list by nation
+     */
+    private void extractTanks() {
+
+        for (Tank tank : tankAll) {
+            if (FiltersManager.CHINA.equalsIgnoreCase(tank.getNation())) {
+                tankCHINA.add(tank);
+            } else if (FiltersManager.CHZ.equalsIgnoreCase(tank.getNation())) {
+                tankCHZ.add(tank);
+            } else if (FiltersManager.DK.equalsIgnoreCase(tank.getNation())) {
+                tankDK.add(tank);
+            } else if (FiltersManager.FR.equalsIgnoreCase(tank.getNation())) {
+                tankFR.add(tank);
+            } else if (FiltersManager.JP.equalsIgnoreCase(tank.getNation())) {
+                tankJP.add(tank);
+            } else if (FiltersManager.US.equalsIgnoreCase(tank.getNation())) {
+                tankUS.add(tank);
+            } else if (FiltersManager.UK.equalsIgnoreCase(tank.getNation())) {
+                tankUK.add(tank);
+            } else if (FiltersManager.URSS.equalsIgnoreCase(tank.getNation())) {
+                tankURSS.add(tank);
+            }
+        }
     }
 
 }

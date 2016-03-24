@@ -39,6 +39,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 // TODO Auto-generated method stub
                 Intent i = new Intent(SplashScreenActivity.this, HomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 this.finish();
             }
