@@ -29,7 +29,6 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
 
-        DataObjectContainer.initDatas();
         WoTChartsDbHelper mDbHelper = new WoTChartsDbHelper(getApplicationContext());
         MockDB.initializeDBMock(mDbHelper);
 //        MockDB.readData(mDbHelper);
@@ -37,7 +36,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 Intent i = new Intent(SplashScreenActivity.this, HomeActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);

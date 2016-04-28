@@ -27,11 +27,11 @@ public class ScrollingActivity extends AppCompatActivity {
         Integer posDataObject = Integer.parseInt((String) intent.getExtras().get(EXTRA_MESSAGE));
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        int logo = DataObjectContainer.getDatas().get(posDataObject).getBigImage();
+        String logo = MainActivity.tanks.get(posDataObject).getImage();
         //COLORE DELLA TOOLBARD DA COLLASSATA
         //collapsingToolbarLayout.setContentScrim(getResources().getDrawable(logo));
         /*IMPOSTO LA BIG IMAGE*/
-        ((ImageView) findViewById(R.id.img_toolbar)).setImageDrawable(getResources().getDrawable(logo));
+        ((ImageView) findViewById(R.id.img_toolbar)).setImageDrawable(getResources().getDrawable(Integer.valueOf(logo).intValue()));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -51,7 +51,7 @@ public class ScrollingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView description = (TextView) findViewById(R.id.description);
-        description.setText(DataObjectContainer.getDatas().get(posDataObject).getDetail());
+        description.setText( MainActivity.tanks.get(posDataObject).getDescription());
 
         RadarChart mChart = (RadarChart) findViewById(R.id.chart1);
         //Typeface tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");

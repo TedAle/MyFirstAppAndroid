@@ -1,5 +1,7 @@
 package com.example.ted.myapplication;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +20,8 @@ import com.example.ted.myapplication.model.utils.FiltersManager;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+    private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+
     WoTChartsDbHelper mDbHelper;
     ArrayList<Tank> tankUS;
     ArrayList<Tank> tankURSS;
@@ -99,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
                 ArrayList<Tank> result;
                 result = shortcutSearch(nations, classes, tiers);
                 if (result == null) {
-                    if (nations.size() == 0 && classes.size() == 0 && tiers.size() == 0) {
+                    if (nations.isEmpty() && classes.isEmpty() && tiers.isEmpty()) {
                         result = tankAll;
                     } else {
                         WoTChartsDbHelper mDbHelper = new WoTChartsDbHelper(getApplicationContext());
@@ -111,6 +115,10 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 Snackbar.make(view, "Finded " + result.size() + " tanks", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                //////
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, result);
+                startActivity(intent);
             }
         });
     }
@@ -400,7 +408,6 @@ public class HomeActivity extends AppCompatActivity {
     private void changeImage(CompoundButton v, Boolean flag, int _idTrue, int _idFalse) {
         if (flag) {
             v.setBackgroundResource(_idTrue);
-//            v.set
         } else {
             v.setBackgroundResource(_idFalse);
 //            v.setColorFilter(Color.argb(255, 255, 255, 255)); // White Tint
@@ -520,4 +527,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

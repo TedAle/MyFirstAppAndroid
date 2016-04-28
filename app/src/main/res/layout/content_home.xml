@@ -22,77 +22,91 @@
         android:layout_marginRight="16dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:divider="@android:color/transparent"
             android:dividerHeight="5dp"
             android:dividerPadding="25dp"
-            android:showDividers="middle"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:showDividers="middle">
 
             <ToggleButton
                 android:id="@+id/us"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_usa_flag_disabled"
                 android:textOff="@null"
-                android:textOn="@null" />
+                android:textOn="@null"
+                android:translationZ="16dp" />
 
             <ToggleButton
                 android:id="@+id/urss"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_ussr_flag_disabled"
                 android:textOff="@null"
-                android:textOn="@null" />
+                android:textOn="@null"
+                android:translationZ="16dp" />
 
             <ToggleButton
                 android:id="@+id/uk"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_uk_flag_disabled"
                 android:textOff="@null"
-                android:textOn="@null" />
+                android:textOn="@null"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/china"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_china_flag_disabled"
                 android:textOff="@null"
-                android:textOn="@null" />
+                android:textOn="@null"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/jp"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_japan_flag_disabled"
                 android:textOff="@null"
-                android:textOn="@null" />
+                android:textOn="@null"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/chz"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_czechoslovakia_flag_disabled"
                 android:textOff="@null"
-                android:textOn="@null" />
+                android:textOn="@null"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/fr"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_french_flag_disabled"
                 android:textOff="@null"
-                android:textOn="@null" />
+                android:textOn="@null"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/dk"
@@ -101,7 +115,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_germany_flag_disabled"
                 android:textOff="@null"
-                android:textOn="@null"/>
+                android:textOn="@null"
+                android:translationZ="8dp" />
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -114,13 +129,12 @@
         android:id="@+id/filter_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/filter_1"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:divider="@android:color/transparent"
             android:dividerHeight="5dp"
@@ -131,25 +145,36 @@
                 android:id="@+id/class1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="C1" />
+                android:layout_marginEnd="16dp"
+                android:textOff="C1"
+                android:textOn="C1"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/class2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="C2" />
+                android:layout_marginEnd="16dp"
+                android:textOff="C2"
+                android:textOn="C2"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/class3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="C3" />
+                android:layout_marginEnd="16dp"
+                android:textOff="C3"
+                android:textOn="C3"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/class4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="C4" />
+                android:textOff="C4"
+                android:textOn="C4"
+                android:translationZ="8dp" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -163,13 +188,12 @@
         android:id="@+id/filter_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/filter_2"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:divider="@android:color/transparent"
             android:dividerHeight="5dp"
@@ -179,52 +203,91 @@
             <ToggleButton
                 android:id="@+id/tier1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T01"
+                android:textOn="T01"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T02"
+                android:textOn="T02"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T03"
+                android:textOn="T03"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T04"
+                android:textOn="T04"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T05"
+                android:textOn="T05"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T06"
+                android:textOn="T06"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier7"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T07"
+                android:textOn="T07"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T08"
+                android:textOn="T08"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier9"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textOff="T09"
+                android:textOn="T09"
+                android:translationZ="8dp" />
 
             <ToggleButton
                 android:id="@+id/tier10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textOff="T10"
+                android:textOn="T10"
+                android:translationZ="8dp" />
 
 
         </LinearLayout>

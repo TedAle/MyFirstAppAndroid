@@ -15,7 +15,7 @@ public class DataObject {
         this.detail = text2;
         this.icon = R.mipmap.default_icon;
         this.favorite = Boolean.FALSE;
-        this.bigImage = R.color.colorPrimary;
+        this.bigImage = R.mipmap.default_big_image;
     }
 
     DataObject(String text1, String text2, Boolean favorite) {

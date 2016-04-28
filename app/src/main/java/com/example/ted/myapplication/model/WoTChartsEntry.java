@@ -8,6 +8,7 @@ public class WoTChartsEntry {
     public static final String TABLE_NAME = "Tanks";
     public static final String _ID = "ID";
     public static final String NAME = "NAME";
+    public static final String DESCRIPTION = "DESCRIPTION";
     public static final String NATION = "NATION";
     public static final String CLASS = "CLASS";
     public static final String TIER = "TIER";

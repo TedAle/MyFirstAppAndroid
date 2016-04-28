@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.example.ted.myapplication.model.Tank;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -19,18 +21,24 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private static final String LOG_TAG = "RecyclerViewActivity";
 
-    ArrayList<DataObject> datas = new ArrayList<DataObject>();
+    public ArrayList<DataObject> datas = new ArrayList<DataObject>();
+    public static ArrayList<Tank> tanks = new ArrayList<Tank>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        tanks = (ArrayList<Tank>) intent.getExtras().get(EXTRA_MESSAGE);
+        datas = DataObjectContainer.getDatas(tanks);
+
+
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyRecyclerViewAdapter(DataObjectContainer.getDatas());
+        mAdapter = new MyRecyclerViewAdapter(datas);
         mRecyclerView.setAdapter(mAdapter);
         //TODO to check
 //        RecyclerView.ItemDecoration itemDecoration =
@@ -58,13 +66,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<DataObject> getDataSet() {
-        ArrayList<DataObject> results = new ArrayList<DataObject>();
+    /*    ArrayList<DataObject> results = new ArrayList<DataObject>();
         for (int index = 0; index < 20; index++) {
             DataObject obj = new DataObject("Some Primary Text " + index,
                     "Secondary " + index);
             results.add(index, obj);
         }
         return results;
+    */
+        if (datas==null){
+            DataObjectContainer.getDatas(tanks);
+        }
+        return datas;
     }
 
 //    public void clickIcon(View view) {

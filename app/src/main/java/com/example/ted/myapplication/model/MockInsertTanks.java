@@ -15,6 +15,7 @@ public class MockInsertTanks {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(WoTChartsEntry.NAME, "tank1");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank1");
         values.put(WoTChartsEntry.NATION, "US");
         values.put(WoTChartsEntry.CLASS, "light");
         values.put(WoTChartsEntry.TIER, "1");
@@ -25,6 +26,7 @@ public class MockInsertTanks {
 
         ContentValues values2 = new ContentValues();
         values2.put(WoTChartsEntry.NAME, "tank2");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank2");
         values2.put(WoTChartsEntry.NATION, "US");
         values2.put(WoTChartsEntry.CLASS, "light");
         values2.put(WoTChartsEntry.TIER, "2");
@@ -34,6 +36,7 @@ public class MockInsertTanks {
 
         ContentValues values3 = new ContentValues();
         values3.put(WoTChartsEntry.NAME, "tank3");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank3");
         values3.put(WoTChartsEntry.NATION, "US");
         values3.put(WoTChartsEntry.CLASS, "medium");
         values3.put(WoTChartsEntry.TIER, "1");
@@ -43,6 +46,7 @@ public class MockInsertTanks {
 
         ContentValues values4 = new ContentValues();
         values4.put(WoTChartsEntry.NAME, "tank4");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank4");
         values4.put(WoTChartsEntry.NATION, "US");
         values4.put(WoTChartsEntry.CLASS, "medium");
         values4.put(WoTChartsEntry.TIER, "2");
@@ -54,6 +58,7 @@ public class MockInsertTanks {
 
         ContentValues values5 = new ContentValues();
         values5.put(WoTChartsEntry.NAME, "tank5");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank5");
         values5.put(WoTChartsEntry.NATION, "US");
         values5.put(WoTChartsEntry.CLASS, "heavy");
         values5.put(WoTChartsEntry.TIER, "1");
@@ -63,6 +68,7 @@ public class MockInsertTanks {
 
         ContentValues values6 = new ContentValues();
         values6.put(WoTChartsEntry.NAME, "tank6");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank6");
         values6.put(WoTChartsEntry.NATION, "US");
         values6.put(WoTChartsEntry.CLASS, "heavy");
         values6.put(WoTChartsEntry.TIER, "2");
@@ -74,6 +80,7 @@ public class MockInsertTanks {
 
         ContentValues values7 = new ContentValues();
         values7.put(WoTChartsEntry.NAME, "tank7");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank7");
         values7.put(WoTChartsEntry.NATION, "URSS");
         values7.put(WoTChartsEntry.CLASS, "light");
         values7.put(WoTChartsEntry.TIER, "1");
@@ -84,6 +91,7 @@ public class MockInsertTanks {
 
         ContentValues values8 = new ContentValues();
         values8.put(WoTChartsEntry.NAME, "tank8");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank8");
         values8.put(WoTChartsEntry.NATION, "URSS");
         values8.put(WoTChartsEntry.CLASS, "light");
         values8.put(WoTChartsEntry.TIER, "2");
@@ -93,6 +101,7 @@ public class MockInsertTanks {
 
         ContentValues values9 = new ContentValues();
         values9.put(WoTChartsEntry.NAME, "tank9");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank9");
         values9.put(WoTChartsEntry.NATION, "URSS");
         values9.put(WoTChartsEntry.CLASS, "medium");
         values9.put(WoTChartsEntry.TIER, "1");
@@ -103,6 +112,7 @@ public class MockInsertTanks {
 
         ContentValues values10 = new ContentValues();
         values10.put(WoTChartsEntry.NAME, "tank10");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank10");
         values10.put(WoTChartsEntry.NATION, "URSS");
         values10.put(WoTChartsEntry.CLASS, "medium");
         values10.put(WoTChartsEntry.TIER, "2");
@@ -112,6 +122,7 @@ public class MockInsertTanks {
 
         ContentValues values11 = new ContentValues();
         values11.put(WoTChartsEntry.NAME, "tank11");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank11");
         values11.put(WoTChartsEntry.NATION, "URSS");
         values11.put(WoTChartsEntry.CLASS, "heavy");
         values11.put(WoTChartsEntry.TIER, "1");
@@ -122,6 +133,7 @@ public class MockInsertTanks {
 
         ContentValues values12 = new ContentValues();
         values12.put(WoTChartsEntry.NAME, "tank12");
+        values.put(WoTChartsEntry.DESCRIPTION, "description tank12");
         values12.put(WoTChartsEntry.NATION, "URSS");
         values12.put(WoTChartsEntry.CLASS, "heavy");
         values12.put(WoTChartsEntry.TIER, "2");
