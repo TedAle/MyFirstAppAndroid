@@ -40,7 +40,7 @@ public class MockDB {
         String[] projection = {
                 WoTChartsEntry._ID,
                 WoTChartsEntry.NAME, WoTChartsEntry.NATION, WoTChartsEntry.CLASS, WoTChartsEntry.TIER,
-                WoTChartsEntry.SHIELD, WoTChartsEntry.FIRE_POWER,
+                WoTChartsEntry.SHIELD, WoTChartsEntry.FIRE_POWER, WoTChartsEntry.DESCRIPTION
         };
 
         // How you want the results sorted in the resulting Cursor
@@ -72,6 +72,8 @@ public class MockDB {
 
                     Log.d("MOCK_DB", "FIRE_POWER: " + c.getColumnIndex(WoTChartsEntry.FIRE_POWER));
                     Log.d("MOCK_DB", "SHIELD: " + c.getColumnIndex(WoTChartsEntry.SHIELD));
+
+                    Log.d("MOCK_DB", "DESCRIPTION: " + c.getColumnIndex(WoTChartsEntry.DESCRIPTION));
                 } while (c.moveToNext());
             }
         }

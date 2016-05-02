@@ -29,7 +29,7 @@ public class DataObject {
     DataObject(String text1, String text2, int icon, Boolean favorite) {
         this.name = text1;
         this.detail = text2;
-        this.icon = icon;
+        this.icon = R.mipmap.default_icon;
         this.favorite = favorite;
         this.bigImage = R.mipmap.default_big_image;
     }
@@ -37,9 +37,9 @@ public class DataObject {
     DataObject(String text1, String text2, int icon, Boolean favorite, int bigImage) {
         this.name = text1;
         this.detail = text2;
-        this.icon = icon;
+        this.icon = R.mipmap.default_icon;
         this.favorite = favorite;
-        this.bigImage = bigImage;
+        this.bigImage = R.mipmap.default_big_image;
     }
 
     public String getName() {

@@ -12,7 +12,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ted.myapplication.model.Tank;
 import com.github.mikephil.charting.charts.RadarChart;
+
+import java.util.HashMap;
 
 public class ScrollingActivity extends AppCompatActivity {
     private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
@@ -53,9 +56,13 @@ public class ScrollingActivity extends AppCompatActivity {
         TextView description = (TextView) findViewById(R.id.description);
         description.setText( MainActivity.tanks.get(posDataObject).getDescription());
 
+        //Retrieve the tank selected
+        Tank tank = MainActivity.tanks.get(posDataObject);
+
+
         RadarChart mChart = (RadarChart) findViewById(R.id.chart1);
         //Typeface tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
-        RadarClass.getRadar(mChart, null, null);
+        RadarClass.getRadar(mChart, null, tank, DemoBase.RadarKindEnum.FIREPOWER.getDescription());
 
         RadarChart mChart2 = (RadarChart) findViewById(R.id.chart2);
         RadarClass.getRadar(mChart2, null, null);
@@ -63,4 +70,5 @@ public class ScrollingActivity extends AppCompatActivity {
         RadarChart mChart3 = (RadarChart) findViewById(R.id.chart3);
         RadarClass.getRadar(mChart3, null, null);
     }
+
 }

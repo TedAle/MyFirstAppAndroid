@@ -21,7 +21,8 @@ public class WoTChartsDbHelper extends SQLiteOpenHelper {
                     WoTChartsEntry.TIER + TEXT_TYPE + COMMA_SEP +
                     WoTChartsEntry.PREMIUM + BOOL_TYPE + COMMA_SEP +
                     WoTChartsEntry.SHIELD + TEXT_TYPE + COMMA_SEP +
-                    WoTChartsEntry.FIRE_POWER + TEXT_TYPE +
+                    WoTChartsEntry.FIRE_POWER + TEXT_TYPE + COMMA_SEP +
+                    WoTChartsEntry.DESCRIPTION + TEXT_TYPE +
                     " );";
 
     private static final String SQL_DELETE_ENTRIES =
